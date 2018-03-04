@@ -8,7 +8,7 @@ branches:
     - master
 
 install:
-  - make deps
+  - make ci-deps
 
 script:
   - make ci-test
