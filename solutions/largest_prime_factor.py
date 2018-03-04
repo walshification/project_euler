@@ -14,7 +14,9 @@ def find_largest_of_number(number):
 
 def generate_prime_factors(number):
     factor_limit = math.ceil(math.sqrt(number)) + 1
-    prime_factors = [2]
+    prime_factors = []
+    if number % 2 == 0:
+        prime_factors.append(2)
     composites = {}
 
     for prime in range(3, factor_limit, 2):
