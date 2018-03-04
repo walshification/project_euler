@@ -1,0 +1,14 @@
+language: python
+python:
+  - '3.6.3'
+sudo: false
+
+branches:
+  only:
+    - master
+
+install:
+  - make deps
+
+script:
+  - make ci-test
