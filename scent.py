@@ -27,4 +27,5 @@ def execute_manage_test(*args):
     )
     os.system('env/bin/coverage report --rcfile=setup.cfg')
     os.system('env/bin/coverage html --rcfile=setup.cfg; touch htmlcov')
+    os.system('env/bin/flake8')
     return exit_code == 0
