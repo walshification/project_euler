@@ -15,10 +15,11 @@ test-watch:
 	$(ENV)/bin/sniffer
 
 deps: env
-	$(ENV)/bin/pip install -r requirements.txt
+	$(ENV)/bin/pip install -r requirements/base.txt
+	$(ENV)/bin/pip install -r requirements/dev.txt
 
 ci-deps:
-	pip install -r requirements.txt
+	pip install -r requirements/base.txt
 
 ci-test:
 	coverage run --rcfile=setup.cfg -m unittest discover
@@ -27,6 +28,10 @@ ci-test:
 
 env:
 	$(shell which python) -m venv $(ENV)
+
+clean:
+	rm -rf env
+
 
 
 .PHONY: env, shell, test, test-watch, deps, ci-deps, ci-test
