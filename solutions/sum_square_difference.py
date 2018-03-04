@@ -15,11 +15,13 @@ hundred natural numbers and the square of the sum.
 '''
 
 
-def difference_of_the_sum_the_squares(limit):
-    return square_of_the_sum(range(1, limit+1)) - sum_of_the_squares_of_integers(range(1, limit+1))
+def calculate(limit):
+    square = square_of_the_sum(range(1, limit+1))
+    _sum = sum_of_the_squares(range(1, limit+1))
+    return square - _sum
 
 
-def sum_of_the_squares_of_integers(integers):
+def sum_of_the_squares(integers):
     total = 0
     for integer in integers:
         total += integer**2
@@ -31,4 +33,4 @@ def square_of_the_sum(integers):
 
 
 if __name__ == '__main__':
-    print(difference_of_the_sum_the_squares(100))
+    print(calculate(100))  # => 25164150
