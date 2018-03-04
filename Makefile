@@ -18,8 +18,7 @@ deps: env
 	$(ENV)/bin/pip install -r requirements.txt
 
 ci-deps:
-	pip install -r requirements/base.txt
-	pip install -r requirements/dev.txt
+	pip install -r requirements.txt
 
 ci-test:
 	coverage run --rcfile=setup.cfg -m unittest discover
