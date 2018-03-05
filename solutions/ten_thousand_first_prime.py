@@ -9,13 +9,11 @@ import math
 
 def get_prime(n):
     current = 1
-    target = None
-    for prime in generate_primes(n):
-        target = prime
-        if current == n:
-            break
+    primes_generator = generate_primes(n)
+    while current < n:
+        next(primes_generator)
         current += 1
-    return target
+    return next(primes_generator)
 
 
 def generate_primes(limit):
