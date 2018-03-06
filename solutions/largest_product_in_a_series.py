@@ -2,9 +2,8 @@ from functools import reduce
 
 
 def largest_product(length, series):
-    subs = subseries(length, series)
     largest_product = 0
-    for sub in subs:
+    for sub in subseries(length, series):
         product = reduce(lambda a, b: a * b, sub)
         if product > largest_product:
             largest_product = product
@@ -13,12 +12,9 @@ def largest_product(length, series):
 
 def subseries(length, series):
     start = 0
-    end = len(series) - length
-    subseries = []
-    while start <= end:
-        subseries.append(series[start:start+length])
+    while start <= (len(series) - length):
+        yield series[start:start+length]
         start += 1
-    return subseries
 
 
 if __name__ == '__main__':
