@@ -7,33 +7,34 @@ What is the 10,001st prime number?
 import math
 
 
-def get_prime(n):
-    current = 1
-    primes_generator = generate_primes(n)
-    while current < n:
-        next(primes_generator)
-        current += 1
-    return next(primes_generator)
+def get_target_prime(target):
+    if target == 1:
+        return 2  # handle the one even case
+
+    candidate = 1
+    count = 1  # 2 was our first counted prime
+    while count != target:
+        candidate += 2
+        if is_prime(candidate):
+            count += 1
+    return candidate
 
 
-def generate_primes(limit):
-    yield 2
-    composites = {}
-    prime = 3
-    limit = int(limit * math.log(limit) * 10)  # approximish
+def is_prime(number):
+    if number < 4:  # 2 and 3
+        return True
+    if number % 2 == 0:  # any even number after 2
+        return False
 
-    while 1:
-        if not composites.get(prime):
-            for composite in generate_composites(prime, limit):
-                composites[composite] = True
-            yield prime
-        prime += 2
-
-
-def generate_composites(base, limit):
-    for i in range(base, limit + 1, base):
-        yield i
+    # all primes after 3 are 6k +/- 1, where k == some constant
+    limit = math.floor(math.sqrt(number))
+    prime_factor = 3
+    while prime_factor <= limit:
+        if (number % prime_factor == 0) or (number % (prime_factor + 2) == 0):
+            return False
+        prime_factor += 6
+    return True
 
 
 if __name__ == '__main__':
-    print(get_prime(10001))  # => 104743
+    print(get_target_prime(10001))  # => 104743
